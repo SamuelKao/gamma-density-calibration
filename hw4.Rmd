@@ -33,7 +33,7 @@ data <- read.table("gauge.txt", header = TRUE)
 ## Question 1
 
 ### Method
-The data shows a relationship between gain and density, described by  , suggesting an exponential decay. To verify this, a linear regression was performed on the untransformed data, and the residuals were examined to assess model adequacy. 
+The relationship between gain and density was examined using a linear regression model. This initial approach assumes a linear relationship between the variables. The adequacy of the model fit was assessed by examining residuals for patterns that might indicate non-linearity or other model inadequacies.
 
 ### Analysis
 ```{r echo=FALSE}
@@ -407,7 +407,7 @@ intermediate_data <- data[intermediate_mask, ]
 
 # Ensure the subset is not empty
 if (nrow(intermediate_data) == 0) {
-  stop("No data found in the intermediate density range. Check the quantile calculations.")
+     stop("No data found in the intermediate density range. Check the quantile calculations.")
 }
 
 # Assign predictions to the intermediate data
@@ -425,7 +425,6 @@ bias_summary <- summary(intermediate_data$bias)
 
 # Display results
 list(mean_bias = mean_bias, bias_summary = bias_summary)
-
 ```
 
 The bias for intermediate densities (2nd and 3rd quartiles) was analyzed to assess the exponential model's predictive performance. The mean bias was found to be 2.50, indicating a slight tendency for the model to overpredict gain values in this range. While the median bias was closer to zero (0.40), suggesting most predictions were relatively accurate, the range of bias values, from -5.23 (underprediction) to 13.97 (overprediction), highlighted variability in the model's performance. The 1st quartile bias (-1.98) and 3rd quartile bias (7.97) revealed that the majority of predictions were modestly overestimated, though some outliers contributed to the larger mean bias.
